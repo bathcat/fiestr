@@ -2,8 +2,6 @@
 
 Learn how to build apps with React and React Native.
 
-***Note:*** *This repository is under construction. Eventually it will contain all slides, demos, and exercises. Expect heavy changes until ~Nov 1.*
-
 ---
 
 ## Contents
@@ -23,7 +21,7 @@ The seminar begins with an introduction to React components and applications. Ne
 
 Pre-Requisites: Attendees should have some experience with programming in general and working knowledge and practical experience of Modern JavaScript. Some React experience is a plus.
 
-<br/>
+---
 
 ### Objectives
 
@@ -36,7 +34,7 @@ After this course, you will be able to:
 * Discuss the differences between React and React Native
 * Build and deploy a non-trivial React Native application
 
-<br/>
+---
 
 ### Duration
 
