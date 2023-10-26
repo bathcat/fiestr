@@ -1,39 +1,51 @@
-import { useState, useEffect } from 'react';
+import { useState, useRef } from 'react';
+
+enum RunState {
+  Stopped,
+  Running,
+  Paused,
+}
 
 export const Stopwatch = () => {
   const [timeElapsed, setTimeElapsed] = useState(0);
-  const [isRunning, setIsRunning] = useState(false);
+  const [runState, setRunState] = useState(RunState.Stopped);
+  const timeoutID = useRef(0);
 
-  useEffect(() => {
-    if (!isRunning) {
-      return;
-    }
-    const tick = () => setTimeElapsed(timeElapsed + 1);
-    const intervalID = setInterval(tick, 1000);
-    return () => clearInterval(intervalID);
-  }, [timeElapsed, isRunning]);
+  window.clearTimeout(timeoutID.current);
+  
+  if (runState === RunState.Running) {
+    timeoutID.current = window.setTimeout(
+      () => setTimeElapsed(te => te + .01),
+      10,
+    );
+  }
+
+  const stop = () => {
+    setTimeElapsed(0);
+    setRunState(RunState.Stopped);
+  };
 
   return (
     <div className="prose p-2 practice">
       <button
-        onClick={() => setIsRunning(true)}
-        disabled={isRunning}
+        onClick={()=>setRunState(RunState.Running)}
+        disabled={runState === RunState.Running}
       >
         Start
       </button>
       <button
-        onClick={() => setIsRunning(false)}
-        disabled={!isRunning}
+        onClick={()=>setRunState(RunState.Paused)}
+        disabled={runState !== RunState.Running}
       >
         Pause
       </button>
       <button
-        onClick={() => setTimeElapsed(0)}
-        disabled={timeElapsed === 0}
+        onClick={stop}
+        disabled={runState === RunState.Stopped}
       >
-        Reset
+        Stop
       </button>
-      <h1 className="p-3">{timeElapsed.toString()}</h1>
+      <h1 className="p-3">{timeElapsed.toFixed(3)}</h1>
     </div>
   );
 };

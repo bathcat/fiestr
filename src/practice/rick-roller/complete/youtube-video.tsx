@@ -21,6 +21,7 @@ const loadYoutubeApi = (
 ): Promise<void> => {
   const existingScriptElement = window.document.getElementById(youtubeScriptID);
   if (existingScriptElement) {
+    console.log('Already in there.');
     return Promise.resolve();
   }
 
