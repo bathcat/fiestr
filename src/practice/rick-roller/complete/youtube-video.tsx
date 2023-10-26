@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { PlayerState } from './player-state';
 
 const youtubeScriptID = 'fr-youtube-api';
 
@@ -7,6 +8,13 @@ declare global {
     onYouTubeIframeAPIReady?: () => void;
   }
 }
+
+const sleep = (timeout:number):Promise<void>=>
+  new Promise(resolve =>{
+    setTimeout(() => {
+      resolve();
+    }, timeout);
+  });
 
 const loadYoutubeApi = (
   window: Window = globalThis.window,
@@ -52,16 +60,36 @@ interface YoutubeVideoProps {
   videoId: string;
 }
 
+
+
 const getRandomPlaceholderId = () =>
   `fr-youtube-${Math.floor(Math.random() * 10000)}`;
 
 export const YoutubeVideo = ({ state, videoId }: YoutubeVideoProps) => {
   const playerId = useRef(getRandomPlaceholderId());
+  const player = useRef<YT.Player>();
   useEffect(() => {
-    loadYoutubePlayer(videoId, playerId.current).then(player =>
-      player.playVideo(),
+    loadYoutubePlayer(videoId, playerId.current).then(p =>
+      player.current=p,
     );
   }, [videoId]);
+
+  useEffect(() => {
+    //TODO: Figure out how to wait for thing to load before trying to play something.
+    if(!player.current){
+      return;
+    }
+
+    if(state===PlayerState.PLAYING){
+      player.current?.playVideo();
+    }
+    else if(state===PlayerState.PAUSED){
+      player.current?.pauseVideo();
+    }
+    else if(state===PlayerState.UNSTARTED){
+      player.current?.stopVideo();
+    }
+  }, [state]);
 
   return (
     <div>
