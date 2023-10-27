@@ -12,7 +12,7 @@ import { UseFrozenStatePractice } from './practice/use-frozen-state/use-frozen-s
 import { InvitationsPractice } from './practice/invitations/invitations-practice.tsx';
 import { PlanetsDemo } from './demos/planets/planets-demo.tsx';
 
-interface RouteInfo {
+export interface RouteInfo {
   path: string;
   element: ReactNode;
   title: string;

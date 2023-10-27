@@ -1,8 +1,9 @@
 import { NavbarButton } from './NavbarButton';
 import { NavbarDemoMenu } from './NavbarDemoMenu';
+import { NavbarMenu } from './NavbarMenu';
 import { NavbarPracticeMenu } from './NavbarPracticeMenu';
 import { NavbarSlidesMenu } from './NavbarSlidesMenu';
-import { routes } from '@/routes';
+import { routes,demoRoutes,practiceRoutes } from '@/routes';
 
 export const Navbar = () => (
   <nav className="bg-gray-800">
@@ -29,8 +30,12 @@ export const Navbar = () => (
               >
                 Playground
               </NavbarButton>
-              <NavbarPracticeMenu />
-              <NavbarDemoMenu />
+              <NavbarMenu links={Object.values(practiceRoutes)}>
+                Practice
+              </NavbarMenu>
+              <NavbarMenu links={Object.values(demoRoutes)}>
+                Demos
+              </NavbarMenu>
               <NavbarSlidesMenu />
             </div>
           </div>

@@ -1,5 +1,5 @@
 import { NavbarMenuLink } from './NavbarMenuLink';
-import { demoRoutes } from '../../routes';
+import { RouteInfo, practiceRoutes } from '../../routes';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -7,16 +7,21 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
+import { PropsWithChildren } from 'react';
 
-export const NavbarDemoMenu = () => {
+interface Props extends PropsWithChildren{
+  links:Array<RouteInfo>;
+}
+
+export const NavbarMenu = ({links,children}:Props) => {
   return (
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Demos</NavigationMenuTrigger>
+          <NavigationMenuTrigger>{children}</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul>
-              {Object.values(demoRoutes).map(info => (
+              {links.map(info => (
                 <li key={info.title}>
                   <NavbarMenuLink to={info.path}>{info.title}</NavbarMenuLink>
                 </li>
