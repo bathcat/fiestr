@@ -1,4 +1,5 @@
 import { NavbarButton } from './NavbarButton';
+import { NavbarDemoMenu } from './NavbarDemoMenu';
 import { NavbarPracticeMenu } from './NavbarPracticeMenu';
 import { NavbarSlidesMenu } from './NavbarSlidesMenu';
 import { routes } from '@/routes';
@@ -29,6 +30,7 @@ export const Navbar = () => (
                 Playground
               </NavbarButton>
               <NavbarPracticeMenu />
+              <NavbarDemoMenu />
               <NavbarSlidesMenu />
             </div>
           </div>

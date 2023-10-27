@@ -10,12 +10,21 @@ import { ReactNode } from 'react';
 import { WordProcessorPractice } from './practice/word-processor/word-processor-practice.tsx';
 import { UseFrozenStatePractice } from './practice/use-frozen-state/use-frozen-state-practice.tsx';
 import { InvitationsPractice } from './practice/invitations/invitations-practice.tsx';
+import { PlanetsDemo } from './demos/planets/planets-demo.tsx';
 
 interface RouteInfo {
   path: string;
   element: ReactNode;
   title: string;
 }
+
+export const demoRoutes: { [key: string]: RouteInfo } = {
+  Planets: {
+    path: '/demo/planets',
+    element: <PlanetsDemo />,
+    title: 'Planets',
+  },
+};
 
 export const practiceRoutes: { [key: string]: RouteInfo } = {
   WeatherPractice: {
@@ -57,6 +66,7 @@ export const practiceRoutes: { [key: string]: RouteInfo } = {
 
 export const routes = {
   ...practiceRoutes,
+  ...demoRoutes,
   Home: {
     path: '/',
     element: <HomePage />,
