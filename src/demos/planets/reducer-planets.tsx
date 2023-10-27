@@ -22,7 +22,7 @@ interface DestroySatelliteAction {
 
 type Action = UpdatePlanetDescriptionAction | DestroySatelliteAction;
 
-const planetsReducer = (
+export const planetsReducer = (
   planets: Array<Planet>,
   action: Action,
 ): Array<Planet> => {
