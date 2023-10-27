@@ -1,7 +1,5 @@
 import { NavbarButton } from './NavbarButton';
-import { NavbarDemoMenu } from './NavbarDemoMenu';
 import { NavbarMenu } from './NavbarMenu';
-import { NavbarPracticeMenu } from './NavbarPracticeMenu';
 import { NavbarSlidesMenu } from './NavbarSlidesMenu';
 import { routes,demoRoutes,practiceRoutes } from '@/routes';
 

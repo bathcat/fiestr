@@ -1,5 +1,5 @@
 import { NavbarMenuLink } from './NavbarMenuLink';
-import { RouteInfo, practiceRoutes } from '../../routes';
+import { RouteInfo } from '../../routes';
 import {
   NavigationMenu,
   NavigationMenuContent,
