@@ -1,14 +1,12 @@
 import { useState } from 'react';
-import { getPlanets, Satellite } from './planets-service';
+import { getPlanets } from './planets-service';
 import {
   Card,
   CardContent,
   CardDescription,
   CardTitle,
 } from '@components/ui/card';
-import { Button } from '@components/ui/button/button';
 import { Badge } from '@components/ui/badge';
-import { platform } from 'os';
 
 export const Planets = () => {
   const [planets, setPlanets] = useState(getPlanets());
