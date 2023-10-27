@@ -8,8 +8,10 @@ export const Stopwatch = () => {
     if (!isRunning) {
       return;
     }
-    const tick = () => setTimeElapsed(timeElapsed + 1);
-    const intervalID = setInterval(tick, 1000);
+    const intervalID = setInterval(
+      () => setTimeElapsed(timeElapsed + 0.01),
+      10,
+    );
     return () => clearInterval(intervalID);
   }, [timeElapsed, isRunning]);
 
@@ -33,7 +35,7 @@ export const Stopwatch = () => {
       >
         Reset
       </button>
-      <h1 className="p-3">{timeElapsed.toString()}</h1>
+      <h1 className="p-3">{timeElapsed.toFixed(3)}</h1>
     </div>
   );
 };
