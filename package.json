@@ -9,7 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "vitest run",
-    "test-watch":"vitest",
+    "test-watch": "vitest",
     "format": "prettier . --write",
     "typecheck": "tsc --noEmit",
     "typecheck-watch": "tsc --noEmit --watch"
@@ -24,11 +24,13 @@
     "@types/youtube": "^0.0.49",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "immer": "^10.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",
     "tailwind-merge": "^1.14.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "use-immer": "^0.9.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
