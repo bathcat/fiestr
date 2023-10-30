@@ -1,4 +1,4 @@
-# Lab: Lorem Ipsum
+# Lab: Word Processor
 
 ## Summary
 
