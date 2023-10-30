@@ -1,8 +1,7 @@
 import { ReadMe } from '@components/read-me';
 import { Planets as StatePlanets } from './state-planets';
-import { Planets as ReducerPlanets } from './reducer-planets';
+import { Planets as ReducerPlanets } from './planets-reducer';
 import { Planets as ImmerPlanets } from './immer-planets';
-
 
 import readme from './README.md?raw';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';

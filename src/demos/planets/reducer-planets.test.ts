@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { planetsReducer } from './reducer-planets';
+import { planetsReducer } from './planets-reducer';
 import { Planet } from './planets-service';
 
 test('DestroySatelliteAction should change affected planet', () => {
@@ -13,11 +13,11 @@ test('DestroySatelliteAction should change affected planet', () => {
     },
   ];
 
-  const updated = planetsReducer(original,{
-    actionType:'destroySatellite',
-    planetID:'002',
-    satelliteID:'es0',
-  })
+  const updated = planetsReducer(original, {
+    actionType: 'destroySatellite',
+    planetID: '002',
+    satelliteID: 'es0',
+  });
 
-  expect(Object.is(original[1],updated[1])).toBeFalsy();
+  expect(Object.is(original[1], updated[1])).toBeFalsy();
 });
