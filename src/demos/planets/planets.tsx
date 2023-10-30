@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { Planet, getPlanets } from './planets-service';
+import { getPlanets } from './planets-service';
 import {
   Card,
   CardContent,
