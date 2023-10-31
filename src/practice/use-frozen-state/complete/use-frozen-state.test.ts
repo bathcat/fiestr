@@ -6,7 +6,8 @@ import { renderHook } from '@testing-library/react';
 test('useFrozenState should freeze at runtime', () => {
   const {result} = renderHook(()=>useFrozenState(10));
   try {
-    const nUnknown:any = result.current;
+    //TODO: Get the typing right on useFrozenState
+    const nUnknown:{content:number} = result.current[0];
     nUnknown.content= 50;
   } catch (e:unknown) {
     console.log(`\n\n------\nError:${JSON.stringify(e)}\n\n--------\n`)

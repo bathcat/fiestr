@@ -1,4 +1,4 @@
-import { Planet, getPlanets } from './planets-service';
+import { getPlanets } from './planets-service';
 import {
   Card,
   CardContent,
@@ -7,45 +7,12 @@ import {
 } from '@components/ui/card';
 import { Badge } from '@components/ui/badge';
 import { useImmerReducer } from 'use-immer';
+import { immerPlanetsReducer } from './immer-planets-reducer';
 
-interface UpdatePlanetDescriptionAction {
-  actionType: 'updatePlanetDescription';
-  planetID: string;
-  newDescription: string;
-}
 
-interface DestroySatelliteAction {
-  actionType: 'destroySatellite';
-  planetID: string;
-  satelliteID: string;
-}
-
-type Action = UpdatePlanetDescriptionAction | DestroySatelliteAction;
-
-export const planetsReducer = (planets: Array<Planet>, action: Action) => {
-  if (action.actionType === 'updatePlanetDescription') {
-    for (const p of planets) {
-      if (p.id === action.planetID) {
-        p.description = action.newDescription;
-        return;
-      }
-    }
-  }
-
-  if (action.actionType === 'destroySatellite') {
-    for (const p of planets) {
-      if (p.id === action.planetID) {
-        p.satellites = p.satellites.filter(s => s.id !== action.satelliteID);
-        return;
-      }
-    }
-  }
-
-  throw new Error('Something is very wrong. You must have passed a bogus action or a bad ID.');
-};
 
 export const Planets = () => {
-  const [planets, dispatch] = useImmerReducer(planetsReducer, getPlanets());
+  const [planets, dispatch] = useImmerReducer(immerPlanetsReducer, getPlanets());
 
   return (
     <>

@@ -9,19 +9,7 @@ import {
 import { Badge } from '@components/ui/badge';
 import { planetsReducer } from './planets-reducer';
 
-interface UpdatePlanetDescriptionAction {
-  actionType: 'updatePlanetDescription';
-  planetID: string;
-  newDescription: string;
-}
 
-interface DestroySatelliteAction {
-  actionType: 'destroySatellite';
-  planetID: string;
-  satelliteID: string;
-}
-
-type Action = UpdatePlanetDescriptionAction | DestroySatelliteAction;
 
 export const Planets = () => {
   const [planets, dispatch] = useReducer(planetsReducer, getPlanets());
