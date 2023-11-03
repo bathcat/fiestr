@@ -3,6 +3,7 @@
     "esbenp.prettier-vscode",
     "bradlc.vscode-tailwindcss",
     "zixuanchen.vitest-explorer",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "msjsdiag.vscode-react-native"
   ]
 }
