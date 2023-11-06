@@ -9,7 +9,6 @@ import { RickRollerPractice } from './practice/rick-roller/rick-roller-practice.
 import { ReactNode } from 'react';
 import { WordProcessorPractice } from './practice/word-processor/word-processor-practice.tsx';
 import { UseFrozenStatePractice } from './practice/use-frozen-state/use-frozen-state-practice.tsx';
-import { InvitationsPractice } from './practice/invitations/invitations-practice.tsx';
 import { PlanetsDemo } from './demos/planets/planets-demo.tsx';
 
 export interface RouteInfo {
@@ -56,11 +55,6 @@ export const practiceRoutes: { [key: string]: RouteInfo } = {
     path: '/practice/use-frozen-state',
     element: <UseFrozenStatePractice />,
     title: 'Frozen State',
-  },
-  InvitationsPractice: {
-    path: '/practice/invitations',
-    element: <InvitationsPractice />,
-    title: 'Invitations',
   },
 };
 
