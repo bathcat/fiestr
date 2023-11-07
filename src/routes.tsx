@@ -10,6 +10,7 @@ import { ReactNode } from 'react';
 import { WordProcessorPractice } from './practice/word-processor/word-processor-practice.tsx';
 import { UseFrozenStatePractice } from './practice/use-frozen-state/use-frozen-state-practice.tsx';
 import { PlanetsDemo } from './demos/planets/planets-demo.tsx';
+import { HeadingsDemo } from './demos/headings/headings-demo.tsx';
 
 export interface RouteInfo {
   path: string;
@@ -22,6 +23,11 @@ export const demoRoutes: { [key: string]: RouteInfo } = {
     path: '/demo/planets',
     element: <PlanetsDemo />,
     title: 'Planets',
+  },
+  Headings: {
+    path: '/demo/headings',
+    element: <HeadingsDemo />,
+    title: 'Headings',
   },
 };
 
