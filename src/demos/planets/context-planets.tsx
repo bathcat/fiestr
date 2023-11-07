@@ -1,5 +1,5 @@
-import { createContext, useReducer } from 'react';
-import { getPlanets } from './planets-service';
+import { createContext, useContext, useReducer } from 'react';
+import { Planet, getPlanets } from './planets-service';
 import {
   Card,
   CardContent,
@@ -9,79 +9,84 @@ import {
 import { Badge } from '@components/ui/badge';
 import { planetsReducer } from './planets-reducer';
 
-interface PlanetDescriptionProps{
-  value:string;
-  onChange:(value:string)=>void;
+const PlanetsDispatchContext = createContext(null);
+
+interface PlanetDescriptionProps {
+  planet: Planet;
 }
 
-export const PlanetDescription = (props:PlanetDescriptionProps) => {
+export const PlanetDescription = ({ planet }: PlanetDescriptionProps) => {
+  const dispatch = useContext(PlanetsDispatchContext);
+
   return (
     <input
       type="text"
-      value={props.value}
-      onChange={e => props.onChange(e.target.value)}
+      id={planet.id}
+      value={planet.name}
+      onChange={e => {
+        dispatch({
+          actionType: 'updatePlanetDescription',
+          planetID: planet.id,
+          newDescription: e.target.value,
+        });
+      }}
     />
   );
 };
 
-interface SatelliteProps{
-  key:string;
-  name:string;
-  onClick:()=>void;
+interface SatelliteProps {
+  id: string;
+  planetId: string;
+  name: string;
 }
 
-export const Satellite = (props:SatelliteProps)=>{
+export const Satellite = (props: SatelliteProps) => {
+  const dispatch = useContext(PlanetsDispatchContext);
   return (
     <Badge
-      key={props.key}
-      onClick={() => props.onClick()}
+      id={props.id}
+      onClick={e => {
+        e.preventDefault();
+        dispatch({
+          actionType: 'destroySatellite',
+          planetID: props.planetId,
+          satelliteID: props.id,
+        });
+      }}
       variant="destructive"
       className="m-1 cursor-pointer"
     >
       {props.name}
     </Badge>
   );
-
-}
+};
 
 export const Planets = () => {
   const [planets, dispatch] = useReducer(planetsReducer, getPlanets());
 
   return (
     <>
-      {planets.map(planet => (
-        <Card key={planet.id}>
-          <CardTitle>{planet.name}</CardTitle>
-          <CardDescription>
-            <PlanetDescription
-              value={planet.description}
-              onChange={newDescription =>
-                dispatch({
-                  actionType: 'updatePlanetDescription',
-                  planetID: planet.id,
-                  newDescription: newDescription,
-                })
-              }
-            />
-          </CardDescription>
-          <CardContent>
-            <h3>Satellites:</h3>
-            {planet.satellites.map(satellite => (
-              <Satellite
-                key={satellite.id}
-                name={satellite.name}
-                onClick={() => {
-                  dispatch({
-                    actionType: 'destroySatellite',
-                    planetID: planet.id,
-                    satelliteID: satellite.id,
-                  });
-                }}
-              />
-            ))}
-          </CardContent>
-        </Card>
-      ))}
+      <PlanetsDispatchContext.Provider value={dispatch}>
+        {planets.map(planet => (
+          <Card key={planet.id}>
+            <CardTitle>{planet.name}</CardTitle>
+            <CardDescription>
+              <PlanetDescription planet={planet} />
+            </CardDescription>
+            <CardContent>
+              <h3>Satellites:</h3>
+              {planet.satellites.map(satellite => (
+                <Satellite
+                  key={satellite.id}
+                  id={satellite.id}
+                  planetId={planet.id}
+                  name={satellite.name}
+                />
+              ))}
+            </CardContent>
+          </Card>
+        ))}
+      </PlanetsDispatchContext.Provider>
     </>
   );
 };

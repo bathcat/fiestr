@@ -1,6 +1,5 @@
 import { Planet } from './planets-service';
 
-
 interface UpdatePlanetDescriptionAction {
   actionType: 'updatePlanetDescription';
   planetID: string;
