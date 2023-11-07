@@ -12,12 +12,13 @@ const decks = [
   { title: 'Overview', path: '/slides/01.Overview.pdf' },
   { title: 'Components', path: '/slides/02.Components.pdf' },
   { title: 'State', path: '/slides/03.State.pdf' },
-  // { title: 'Effects', path: '/slides/04.Effects.pdf' },
-  // { title: 'Quality', path: '/slides/05.Quality.pdf' },
+  { title: 'Effects', path: '/slides/04.Effects.pdf' },
+  { title: 'Potpourri', path: '/slides/05.Potpourri.pdf' },
+  { title: 'Quality', path: '/slides/06.Quality.pdf' },
 ];
 
-interface Props extends PropsWithChildren{
-  href:string;
+interface Props extends PropsWithChildren {
+  href: string;
 }
 
 export const NavbarSlideDeckLink = ({ href, children, ...props }: Props) => (
