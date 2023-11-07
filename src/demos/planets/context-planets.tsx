@@ -7,9 +7,9 @@ import {
   CardTitle,
 } from '@components/ui/card';
 import { Badge } from '@components/ui/badge';
-import { planetsReducer } from './planets-reducer';
+import { planetsReducer,Action } from './planets-reducer';
 
-const PlanetsDispatchContext = createContext(null);
+const PlanetsDispatchContext = createContext<React.Dispatch<Action>>((action:Action)=>{});
 
 interface PlanetDescriptionProps {
   planet: Planet;
@@ -22,7 +22,7 @@ export const PlanetDescription = ({ planet }: PlanetDescriptionProps) => {
     <input
       type="text"
       id={planet.id}
-      value={planet.name}
+      value={planet.description}
       onChange={e => {
         dispatch({
           actionType: 'updatePlanetDescription',
@@ -61,6 +61,32 @@ export const Satellite = (props: SatelliteProps) => {
   );
 };
 
+interface PlanetProps {
+  planet: Planet;
+}
+
+export const PlanetComponent = ({ planet }: PlanetProps) => {
+  return (
+    <Card key={planet.id}>
+      <CardTitle>{planet.name}</CardTitle>
+      <CardDescription>
+        <PlanetDescription planet={planet} />
+      </CardDescription>
+      <CardContent>
+        <h3>Satellites:</h3>
+        {planet.satellites.map(satellite => (
+          <Satellite
+            key={satellite.id}
+            id={satellite.id}
+            planetId={planet.id}
+            name={satellite.name}
+          />
+        ))}
+      </CardContent>
+    </Card>
+  );
+};
+
 export const Planets = () => {
   const [planets, dispatch] = useReducer(planetsReducer, getPlanets());
 
@@ -68,23 +94,7 @@ export const Planets = () => {
     <>
       <PlanetsDispatchContext.Provider value={dispatch}>
         {planets.map(planet => (
-          <Card key={planet.id}>
-            <CardTitle>{planet.name}</CardTitle>
-            <CardDescription>
-              <PlanetDescription planet={planet} />
-            </CardDescription>
-            <CardContent>
-              <h3>Satellites:</h3>
-              {planet.satellites.map(satellite => (
-                <Satellite
-                  key={satellite.id}
-                  id={satellite.id}
-                  planetId={planet.id}
-                  name={satellite.name}
-                />
-              ))}
-            </CardContent>
-          </Card>
+          <PlanetComponent key={planet.id} planet={planet} />
         ))}
       </PlanetsDispatchContext.Provider>
     </>
