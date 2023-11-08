@@ -15,6 +15,12 @@ const decks = [
   { title: 'Effects', path: '/slides/04.Effects.pdf' },
   { title: 'Potpourri', path: '/slides/05.Potpourri.pdf' },
   { title: 'Quality', path: '/slides/06.Quality.pdf' },
+
+  { title: 'Native: Intro', path: '/slides/07.Native-Intro.pdf' },
+  { title: 'Native: Big Picture', path: '/slides/08.Native-Big-Picture.pdf' },
+  { title: 'Native: Components', path: '/slides/09.Native-Components.pdf' },
+  { title: 'Native: Styles', path: '/slides/10.Native-Styles.pdf' },
+  { title: 'Native: Screens', path: '/slides/11.Native-Screens.pdf' },
 ];
 
 interface Props extends PropsWithChildren {
